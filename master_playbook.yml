@@ -1,0 +1,16 @@
+---
+- name: creating variables
+  hosts: dev
+  tasks:
+    - name: create a directory
+      ansible.builtin.file:
+        path: "{{DIRECTORY}}"
+        state: directory
+    - name: create a file
+      ansible.builtin.file:
+        path: "{{FILE}}"
+        stats: touch
+    - name: copy the cotents to index.html
+      ansible.builtin.copy:
+        content: "{{CONTENT}}"
+        path: "{{DIRECTORY}}/{{FILE}}"
